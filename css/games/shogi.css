@@ -1,0 +1,215 @@
+.shogi-shell {
+  width: min(560px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shogi-komadai {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #cfa15a, #bc8b42);
+  border: 1.5px solid #7d5822;
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 245, 220, 0.35);
+}
+
+.shogi-komadai-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #3d280f;
+  margin-right: 4px;
+}
+
+.shogi-hand-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 40px;
+  border-radius: 5px;
+  transition: transform 0.12s ease, background-color 0.12s ease;
+}
+
+.shogi-hand-btn--usable {
+  cursor: pointer;
+}
+
+.shogi-hand-btn--usable:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 250, 232, 0.25);
+}
+
+.shogi-hand-btn--selected {
+  background: rgba(212, 68, 48, 0.28);
+  box-shadow: 0 0 0 2px #a62a21;
+}
+
+.shogi-hand-count {
+  position: absolute;
+  bottom: -2px;
+  right: -3px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  border-radius: 999px;
+  background: #221c15;
+  color: #fdfbf7;
+  font-size: 0.66rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.shogi-frame {
+  position: relative;
+  padding: 16px 20px 16px 12px;
+  border-radius: 10px;
+  background: linear-gradient(155deg, #e2b86d, #cd9c4d 60%, #ba8739);
+  border: 2px solid #8a6226;
+  box-shadow: var(--shadow-board), inset 0 1px 0 rgba(255, 246, 220, 0.45);
+}
+
+.shogi-coords-top {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  margin-bottom: 3px;
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #4b3214;
+  text-align: center;
+}
+
+.shogi-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 16px;
+  align-items: stretch;
+  gap: 4px;
+}
+
+.shogi-coords-right {
+  display: grid;
+  grid-template-rows: repeat(9, 1fr);
+  align-items: center;
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #4b3214;
+  text-align: center;
+}
+
+.shogi-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  aspect-ratio: 9 / 9.7;
+  border: 2px solid #3c2810;
+  background: #3c2810;
+  gap: 1px;
+}
+
+.shogi-cell {
+  position: relative;
+  background: #e5bd74;
+  display: grid;
+  place-items: center;
+  padding: 3%;
+  user-select: none;
+  transition: background-color 0.12s ease;
+}
+
+.shogi-cell--selectable {
+  cursor: pointer;
+}
+
+.shogi-cell--selected {
+  background: #f4d67c;
+  box-shadow: inset 0 0 0 2.5px #a62a21;
+}
+
+.shogi-cell--last {
+  background: #efd07e;
+}
+
+.shogi-cell--check {
+  background: radial-gradient(circle, rgba(212, 48, 38, 0.72), #e5bd74 78%);
+}
+
+.shogi-cell--legal {
+  cursor: pointer;
+}
+
+.shogi-cell--legal:hover {
+  background: #f3d792;
+}
+
+.shogi-legal-dot {
+  position: absolute;
+  width: 26%;
+  height: 26%;
+  border-radius: 50%;
+  background: rgba(142, 44, 36, 0.48);
+  pointer-events: none;
+}
+
+.shogi-legal-ring {
+  position: absolute;
+  inset: 5%;
+  border: 2.5px solid rgba(142, 44, 36, 0.72);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.shogi-piece-svg {
+  width: 92%;
+  height: 92%;
+  pointer-events: none;
+  filter: drop-shadow(0 1.5px 1.5px rgba(32, 20, 6, 0.34));
+}
+
+.shogi-piece-svg--rotated {
+  transform: rotate(180deg);
+}
+
+.shogi-promo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 13, 9, 0.68);
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  z-index: 12;
+}
+
+.shogi-promo-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.shogi-promo-title {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.shogi-promo-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+@media (max-width: 520px) {
+  .shogi-frame {
+    padding: 10px 12px 10px 8px;
+  }
+}

@@ -1,0 +1,82 @@
+:root {
+  /* Typography */
+  --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
+  --font-serif: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Light Theme — Warm Washi Paper & Hinoki Parlor */
+  --bg-canvas: #f5f1e8;
+  --bg-surface: #fdfbf7;
+  --bg-surface-alt: #ede6d8;
+  --bg-elevated: #ffffff;
+  --border-subtle: rgba(54, 42, 28, 0.12);
+  --border-strong: rgba(54, 42, 28, 0.24);
+
+  --text-primary: #221c15;
+  --text-secondary: #5c5144;
+  --text-muted: #847767;
+
+  /* Accents — Deep Lacquer Crimson & Forest Cedar */
+  --accent-primary: #8e2c24;
+  --accent-primary-hover: #73211b;
+  --accent-primary-soft: rgba(142, 44, 36, 0.10);
+  --accent-secondary: #22543d;
+  --accent-secondary-soft: rgba(34, 84, 61, 0.12);
+  --accent-gold: #a6782e;
+  --accent-gold-soft: rgba(166, 120, 46, 0.14);
+
+  /* Status */
+  --status-win: #1e6b45;
+  --status-lose: #9c2b23;
+  --status-warn: #9a6518;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(28, 20, 10, 0.06), 0 1px 3px rgba(28, 20, 10, 0.04);
+  --shadow-md: 0 6px 18px rgba(28, 20, 10, 0.08), 0 2px 6px rgba(28, 20, 10, 0.05);
+  --shadow-lg: 0 18px 44px rgba(22, 15, 7, 0.16), 0 4px 12px rgba(22, 15, 7, 0.08);
+  --shadow-board: 0 14px 36px rgba(20, 14, 7, 0.22), 0 3px 10px rgba(20, 14, 7, 0.12);
+
+  /* Radii & Spacing */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --header-height: 60px;
+
+  /* Wood / Board Textures */
+  --wood-kaya: #dcaf66;
+  --wood-kaya-dark: #c9974c;
+  --wood-walnut: #5c3c24;
+  --felt-green: #1d5c3e;
+  --felt-green-deep: #15452e;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme — Warm Walnut & Charcoal Lounge */
+  --bg-canvas: #161412;
+  --bg-surface: #201d19;
+  --bg-surface-alt: #2a2620;
+  --bg-elevated: #2e2923;
+  --border-subtle: rgba(242, 232, 214, 0.10);
+  --border-strong: rgba(242, 232, 214, 0.22);
+
+  --text-primary: #f2ece2;
+  --text-secondary: #b9ae9e;
+  --text-muted: #8a7f70;
+
+  --accent-primary: #c95246;
+  --accent-primary-hover: #da6458;
+  --accent-primary-soft: rgba(201, 82, 70, 0.18);
+  --accent-secondary: #3b8a64;
+  --accent-secondary-soft: rgba(59, 138, 100, 0.18);
+  --accent-gold: #d2a351;
+  --accent-gold-soft: rgba(210, 163, 81, 0.18);
+
+  --status-win: #4fb37c;
+  --status-lose: #e06458;
+  --status-warn: #deb056;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 8px 22px rgba(0, 0, 0, 0.36);
+  --shadow-lg: 0 22px 54px rgba(0, 0, 0, 0.55);
+  --shadow-board: 0 16px 40px rgba(0, 0, 0, 0.50);
+}

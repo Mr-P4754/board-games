@@ -1,0 +1,56 @@
+.gomoku-board-wrap {
+  width: min(600px, 100%);
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(155deg, #e0b46b 0%, #cf9d4d 55%, #be8c3e 100%);
+  box-shadow: var(--shadow-board), inset 0 1px 0 rgba(255, 245, 220, 0.4);
+  border: 2px solid #91672b;
+}
+
+.gomoku-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.gomoku-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.gomoku-hit:hover + .gomoku-hover-ring {
+  opacity: 0.45;
+}
+
+.gomoku-hover-ring {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+
+.gomoku-stone {
+  pointer-events: none;
+}
+
+.gomoku-win-ring {
+  fill: none;
+  stroke: #d94136;
+  stroke-width: 2.6;
+  pointer-events: none;
+}
+
+.gomoku-forbidden {
+  stroke: #b52a20;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .gomoku-board-wrap {
+    padding: 6px;
+  }
+}

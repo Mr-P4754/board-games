@@ -1,0 +1,66 @@
+.go-shell {
+  width: min(600px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.go-scoring-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--accent-gold-soft);
+  border: 1px solid color-mix(in srgb, var(--accent-gold) 45%, transparent);
+  font-size: 0.85rem;
+}
+
+.go-scoring-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.go-board-wrap {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(155deg, #e1b56c 0%, #cf9d4d 55%, #be8c3e 100%);
+  border: 2px solid #8f672b;
+  box-shadow: var(--shadow-board), inset 0 1px 0 rgba(255, 245, 220, 0.42);
+}
+
+.go-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.go-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.go-hit:hover + .go-hover-stone {
+  opacity: 0.45;
+}
+
+.go-hover-stone {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+
+.go-stone-dead {
+  opacity: 0.42;
+}
+
+@media (max-width: 520px) {
+  .go-board-wrap {
+    padding: 6px;
+  }
+}

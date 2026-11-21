@@ -1,0 +1,9 @@
+{
+  "name": "board-games-spa",
+  "version": "1.0.0",
+  "description": "GitHub Pages ready SPA featuring Othello, Go, Gomoku, Shogi, Chess, and 4-Player Riichi Mahjong.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}

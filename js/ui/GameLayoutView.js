@@ -20,10 +20,16 @@ export class GameLayoutView {
     this.el = document.createElement('section');
     this.el.className = 'game-view';
 
+    const diffName =
+      this.gameMeta.difficultyLabels?.[this.config.difficulty] ||
+      DIFF_LABELS[this.config.difficulty] ||
+      '';
     const modeBadge =
-      this.config.mode === 'cpu'
-        ? `CPU対戦（${DIFF_LABELS[this.config.difficulty] || ''}）`
-        : '対人モード（2P）';
+      this.config.mode === 'solo'
+        ? `パズル（${diffName}）`
+        : this.config.mode === 'cpu'
+          ? `CPU対戦（${DIFF_LABELS[this.config.difficulty] || ''}）`
+          : '対人モード（2P）';
 
     const isWide = Boolean(this.gameMeta.wideLayout);
 

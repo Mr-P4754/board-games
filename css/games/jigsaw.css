@@ -1,0 +1,157 @@
+.jigsaw-workspace {
+  width: min(1060px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.jigsaw-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.jigsaw-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.jigsaw-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.jigsaw-upload-label {
+  cursor: pointer;
+}
+
+.jigsaw-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(240px, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.jigsaw-board-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 10px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #4b3220, #2c1d12);
+  box-shadow: var(--shadow-board);
+}
+
+.jigsaw-board-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 6px;
+  background: #231a13;
+  user-select: none;
+}
+
+.jigsaw-slot-target {
+  fill: transparent;
+  stroke: rgba(255, 245, 224, 0.22);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+  cursor: pointer;
+  transition: fill 0.14s ease, stroke 0.14s ease;
+}
+
+.jigsaw-slot-target:hover,
+.jigsaw-slot-target.is-drag-over {
+  fill: rgba(240, 196, 93, 0.22);
+  stroke: #f0c45d;
+  stroke-dasharray: none;
+}
+
+.jigsaw-tray-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 580px;
+}
+
+.jigsaw-tray-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.jigsaw-tray-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 8px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.jigsaw-tray-piece {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  background: var(--bg-surface-alt);
+  border: 2px solid transparent;
+  padding: 2px;
+  cursor: grab;
+  transition: transform 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+}
+
+.jigsaw-tray-piece:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.jigsaw-tray-piece.is-selected {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary-soft);
+  box-shadow: 0 0 0 2px var(--accent-primary-soft);
+}
+
+.jigsaw-tray-piece svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.28));
+}
+
+.jigsaw-tray-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 24px 8px;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+}
+
+@media (max-width: 900px) {
+  .jigsaw-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .jigsaw-tray-panel {
+    max-height: 290px;
+  }
+}

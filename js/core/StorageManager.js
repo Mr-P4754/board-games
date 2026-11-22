@@ -102,6 +102,45 @@ export class StorageManager {
     this._save(STATS_KEY, this.stats);
   }
 
+  /**
+   * 1人用パズルゲームのクリア回数・ベスト記録を保存
+   * @param {string} gameId
+   * @param {'beginner'|'intermediate'|'advanced'} difficulty
+   * @param {{ timeSec?: number, moves?: number, score?: number }} metrics
+   */
+  recordPuzzleClear(gameId, difficulty, metrics = {}) {
+    if (!this.stats[gameId]) {
+      this.stats[gameId] = {
+        total: { clears: 0, bestScore: 0 },
+        levels: {
+          beginner: { clears: 0, bestTime: null, bestMoves: null, bestScore: 0 },
+          intermediate: { clears: 0, bestTime: null, bestMoves: null, bestScore: 0 },
+          advanced: { clears: 0, bestTime: null, bestMoves: null, bestScore: 0 },
+        },
+      };
+    }
+    const entry = this.stats[gameId];
+    entry.total.clears += 1;
+    if (metrics.score && metrics.score > (entry.total.bestScore || 0)) {
+      entry.total.bestScore = metrics.score;
+    }
+
+    const lv = entry.levels?.[difficulty];
+    if (lv) {
+      lv.clears += 1;
+      if (typeof metrics.timeSec === 'number' && (lv.bestTime === null || metrics.timeSec < lv.bestTime)) {
+        lv.bestTime = metrics.timeSec;
+      }
+      if (typeof metrics.moves === 'number' && (lv.bestMoves === null || metrics.moves < lv.bestMoves)) {
+        lv.bestMoves = metrics.moves;
+      }
+      if (typeof metrics.score === 'number' && metrics.score > (lv.bestScore || 0)) {
+        lv.bestScore = metrics.score;
+      }
+    }
+    this._save(STATS_KEY, this.stats);
+  }
+
   getGameStats(gameId) {
     return this.stats[gameId] || null;
   }

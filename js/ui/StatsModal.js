@@ -33,6 +33,27 @@ export class StatsModal {
                 <td>平均 ${avg}着</td>
               </tr>`;
           }
+          if (game.isSoloPuzzle) {
+            const lv = s?.levels || {};
+            const fmtLv = (d) => {
+              if (!d || !d.clears) return '0回';
+              if (game.id === 'game2048' && d.bestScore) return `${d.clears}回 (${d.bestScore})`;
+              if (typeof d.bestTime === 'number') {
+                const m = Math.floor(d.bestTime / 60);
+                const sec = String(d.bestTime % 60).padStart(2, '0');
+                return `${d.clears}回 (${m}:${sec})`;
+              }
+              return `${d.clears}回`;
+            };
+            return `
+              <tr>
+                <td><strong>${game.name}</strong></td>
+                <td>${fmtLv(lv.beginner)}</td>
+                <td>${fmtLv(lv.intermediate)}</td>
+                <td>${fmtLv(lv.advanced)}</td>
+                <td>計 ${s?.total?.clears || 0}クリア</td>
+              </tr>`;
+          }
           const fmt = (d) => (d ? `${d.win}-${d.lose}-${d.draw}` : '0-0-0');
           return `
             <tr>

@@ -1,0 +1,80 @@
+.g2048-shell {
+  width: min(460px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.g2048-board {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  background: #8c7660;
+  box-shadow: var(--shadow-board), inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  touch-action: none;
+  user-select: none;
+}
+
+.g2048-tile {
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: clamp(1.3rem, 5vw, 2.05rem);
+  font-variant-numeric: tabular-nums;
+  background: rgba(242, 232, 218, 0.28);
+  color: #463a2f;
+  transition: transform 0.12s ease, background-color 0.14s ease;
+}
+
+.g2048-tile--new {
+  animation: tilePop 0.18s ease;
+}
+
+@keyframes tilePop {
+  0% { transform: scale(0.65); }
+  100% { transform: scale(1); }
+}
+
+.g2048-tile--2 { background: #f4ece0; color: #463a2f; }
+.g2048-tile--4 { background: #ede0c8; color: #463a2f; }
+.g2048-tile--8 { background: #e8a768; color: #fffaf2; }
+.g2048-tile--16 { background: #df8449; color: #fffaf2; }
+.g2048-tile--32 { background: #d66242; color: #fffaf2; }
+.g2048-tile--64 { background: #c43f2d; color: #fffaf2; }
+.g2048-tile--128 { background: #e3c25b; color: #fffdf5; font-size: clamp(1.15rem, 4.4vw, 1.75rem); }
+.g2048-tile--256 { background: #deb642; color: #fffdf5; font-size: clamp(1.15rem, 4.4vw, 1.75rem); }
+.g2048-tile--512 { background: #d6a42b; color: #fffdf5; font-size: clamp(1.15rem, 4.4vw, 1.75rem); }
+.g2048-tile--1024 { background: #c7901b; color: #fffdf5; font-size: clamp(1rem, 3.6vw, 1.45rem); }
+.g2048-tile--2048 { background: #9c2b23; color: #fffdf5; font-size: clamp(1rem, 3.6vw, 1.45rem); box-shadow: 0 0 14px rgba(226, 178, 56, 0.55); }
+.g2048-tile--super { background: #26211c; color: #f6d57a; font-size: clamp(0.95rem, 3.4vw, 1.35rem); }
+
+.g2048-dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 54px);
+  grid-template-rows: repeat(2, 44px);
+  gap: 6px;
+}
+
+.g2048-dpad-btn {
+  border-radius: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  font-size: 1.05rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.g2048-dpad-btn:hover {
+  background: var(--bg-surface-alt);
+}
+
+.g2048-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}

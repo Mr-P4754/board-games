@@ -8,8 +8,9 @@ export class SetupModal {
 
   open(gameMeta, initialConfig = null) {
     return new Promise((resolve) => {
+      const isSolo = Boolean(gameMeta.isSoloPuzzle);
       const state = {
-        mode: gameMeta.supportsPvp ? (initialConfig?.mode || 'cpu') : 'cpu',
+        mode: isSolo ? 'solo' : gameMeta.supportsPvp ? (initialConfig?.mode || 'cpu') : 'cpu',
         difficulty: initialConfig?.difficulty || 'intermediate',
         sideChoice: initialConfig?.sideChoice || '1',
         options: {},
@@ -32,6 +33,11 @@ export class SetupModal {
 
       const renderDialog = () => {
         const isCpu = state.mode === 'cpu';
+        const diffLabels = gameMeta.difficultyLabels || {
+          beginner: '初級',
+          intermediate: '中級',
+          advanced: '上級',
+        };
         const optionsHtml = (gameMeta.options || [])
           .map(
             (opt) => `
@@ -58,45 +64,50 @@ export class SetupModal {
           <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="setup-modal-title">
             <div class="modal-header">
               <div>
-                <h2 class="modal-title" id="setup-modal-title">${gameMeta.name} — 対局設定</h2>
+                <h2 class="modal-title" id="setup-modal-title">${gameMeta.name} — ${isSolo ? 'パズル設定' : '対局設定'}</h2>
                 <p class="modal-subtitle">${gameMeta.description}</p>
               </div>
               <button type="button" class="btn btn-ghost btn-sm" id="setup-close" aria-label="閉じる">✕</button>
             </div>
 
-            <div class="form-section">
-              <span class="form-label">対戦モード</span>
-              <div class="segmented">
-                <button type="button" class="segmented-btn ${isCpu ? 'is-selected' : ''}" data-mode="cpu">コンピューター対戦</button>
-                ${
-                  gameMeta.supportsPvp
-                    ? `<button type="button" class="segmented-btn ${!isCpu ? 'is-selected' : ''}" data-mode="pvp">対人モード（2P）</button>`
-                    : `<button type="button" class="segmented-btn" disabled title="4人麻雀はCPU対戦専用です">対人モード（非対応）</button>`
-                }
-              </div>
-              ${
-                !gameMeta.supportsPvp
-                  ? `<p class="form-note">4人麻雀（半荘戦）はコンピューター3名との対戦専用です。</p>`
-                  : `<p class="form-note">${isCpu ? '3段階のCPUと対戦します。' : '同一端末で交互に操作するローカル2人対戦です。'}</p>`
-              }
-            </div>
-
             ${
-              isCpu
+              !isSolo
                 ? `
               <div class="form-section">
-                <span class="form-label">CPUの強さ</span>
+                <span class="form-label">対戦モード</span>
                 <div class="segmented">
-                  <button type="button" class="segmented-btn ${state.difficulty === 'beginner' ? 'is-selected' : ''}" data-diff="beginner">初級</button>
-                  <button type="button" class="segmented-btn ${state.difficulty === 'intermediate' ? 'is-selected' : ''}" data-diff="intermediate">中級</button>
-                  <button type="button" class="segmented-btn ${state.difficulty === 'advanced' ? 'is-selected' : ''}" data-diff="advanced">上級</button>
+                  <button type="button" class="segmented-btn ${isCpu ? 'is-selected' : ''}" data-mode="cpu">コンピューター対戦</button>
+                  ${
+                    gameMeta.supportsPvp
+                      ? `<button type="button" class="segmented-btn ${!isCpu ? 'is-selected' : ''}" data-mode="pvp">対人モード（2P）</button>`
+                      : `<button type="button" class="segmented-btn" disabled title="4人麻雀はCPU対戦専用です">対人モード（非対応）</button>`
+                  }
+                </div>
+                ${
+                  !gameMeta.supportsPvp
+                    ? `<p class="form-note">4人麻雀（半荘戦）はコンピューター3名との対戦専用です。</p>`
+                    : `<p class="form-note">${isCpu ? '3段階のCPUと対戦します。' : '同一端末で交互に操作するローカル2人対戦です。'}</p>`
+                }
+              </div>`
+                : ''
+            }
+
+            ${
+              isSolo || isCpu
+                ? `
+              <div class="form-section">
+                <span class="form-label">${isSolo ? '難易度' : 'CPUの強さ'}</span>
+                <div class="segmented">
+                  <button type="button" class="segmented-btn ${state.difficulty === 'beginner' ? 'is-selected' : ''}" data-diff="beginner">${diffLabels.beginner}</button>
+                  <button type="button" class="segmented-btn ${state.difficulty === 'intermediate' ? 'is-selected' : ''}" data-diff="intermediate">${diffLabels.intermediate}</button>
+                  <button type="button" class="segmented-btn ${state.difficulty === 'advanced' ? 'is-selected' : ''}" data-diff="advanced">${diffLabels.advanced}</button>
                 </div>
               </div>`
                 : ''
             }
 
             ${
-              isCpu && gameMeta.supportsPvp
+              !isSolo && isCpu && gameMeta.supportsPvp
                 ? `
               <div class="form-section">
                 <span class="form-label">あなたの手番</span>
@@ -113,7 +124,7 @@ export class SetupModal {
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" id="setup-cancel">キャンセル</button>
-              <button type="button" class="btn btn-primary" id="setup-start">対局開始</button>
+              <button type="button" class="btn btn-primary" id="setup-start">${isSolo ? 'プレイ開始' : '対局開始'}</button>
             </div>
           </div>
         `;
@@ -129,7 +140,7 @@ export class SetupModal {
               : Number(state.sideChoice);
           close({
             mode: state.mode,
-            difficulty: state.mode === 'cpu' ? state.difficulty : null,
+            difficulty: state.mode === 'cpu' || state.mode === 'solo' ? state.difficulty : null,
             sideChoice: state.sideChoice,
             playerSide,
             options: { ...state.options },

@@ -321,6 +321,223 @@ export class GameRegistry {
         loadController: () =>
           import('../games/mancala/MancalaController.js').then((m) => m.MancalaController),
       },
+      {
+        id: 'jigsaw',
+        category: 'puzzle',
+        isSoloPuzzle: true,
+        name: 'ジグソーパズル',
+        enName: 'JIGSAW PUZZLE',
+        description: '凹凸が噛み合う本格ジグソーパズル。和洋4種のアートに加え、手持ちの画像からもパズルを作成できます。',
+        supportsPvp: false,
+        wideLayout: true,
+        difficultyLabels: {
+          beginner: '初級 (3×3)',
+          intermediate: '中級 (4×4)',
+          advanced: '上級 (5×5)',
+        },
+        options: [
+          {
+            key: 'theme',
+            label: '絵柄テーマ',
+            defaultValue: 'fuji',
+            choices: [
+              { value: 'fuji', label: '富士と紅葉' },
+              { value: 'lighthouse', label: '星空の灯台' },
+              { value: 'koi', label: '庭園と錦鯉' },
+              { value: 'mosaic', label: 'ステンドグラス' },
+            ],
+          },
+        ],
+        rules: [
+          'トレー内のピースを盤面のマスへドラッグ＆ドロップ（またはクリック選択→マスクリック）で配置します。',
+          '正しい位置に置かれたピースは自動的にピタッとロックされます。',
+          '「お手本 ON/OFF」でうっすらとした下絵の表示切替ができ、「画像を変更」から自分の写真でも遊べます。',
+        ],
+        thumbnailSvg: `
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <path d="M18,22 H56 C56,12 68,12 68,22 H102 V56 C112,56 112,68 102,68 V102 H68 C68,92 56,92 56,102 H18 V68 C28,68 28,56 18,56 Z" fill="#e5b864" stroke="#223442" stroke-width="3"/>
+            <path d="M56,22 C56,32 68,32 68,22" fill="none" stroke="#223442" stroke-width="2.2"/>
+            <line x1="60" y1="22" x2="60" y2="102" stroke="#223442" stroke-width="2.2" opacity="0.45"/>
+            <line x1="18" y1="62" x2="102" y2="62" stroke="#223442" stroke-width="2.2" opacity="0.45"/>
+            <circle cx="80" cy="40" r="10" fill="#c94635"/>
+            <polygon points="24,96 48,54 72,96" fill="#3a597a"/>
+          </svg>`,
+        loadController: () =>
+          import('../games/jigsaw/JigsawController.js').then((m) => m.JigsawController),
+      },
+      {
+        id: 'sudoku',
+        category: 'puzzle',
+        isSoloPuzzle: true,
+        name: '数独',
+        enName: 'SUDOKU',
+        description: '唯一解が保証された本格9×9ナンプレ。候補数字メモモード・重複ハイライト・ヒント機能を搭載。',
+        supportsPvp: false,
+        wideLayout: false,
+        difficultyLabels: {
+          beginner: '初級',
+          intermediate: '中級',
+          advanced: '上級',
+        },
+        options: [],
+        rules: [
+          '縦・横の各列および3×3の各ブロックに1〜9の数字が重複しないようすべてのマスを埋めます。',
+          '「メモモード (N)」を使うと各マスに候補の数字を小さくメモできます。',
+          'キーボードの1〜9・矢印キー・Backspaceにも対応しています。',
+        ],
+        thumbnailSvg: `
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="12" y="12" width="96" height="96" rx="8" fill="#fbf7ef" stroke="#263329" stroke-width="3"/>
+            <g stroke="#263329" stroke-width="2.2">
+              <line x1="44" y1="12" x2="44" y2="108"/><line x1="76" y1="12" x2="76" y2="108"/>
+              <line x1="12" y1="44" x2="108" y2="44"/><line x1="12" y1="76" x2="108" y2="76"/>
+            </g>
+            <g font-family="sans-serif" font-weight="800" font-size="22" text-anchor="middle">
+              <text x="28" y="36" fill="#221c15">5</text><text x="60" y="36" fill="#22543d">3</text>
+              <text x="92" y="68" fill="#221c15">8</text><text x="60" y="68" fill="#221c15">7</text>
+              <text x="28" y="100" fill="#22543d">9</text><text x="92" y="100" fill="#8e2c24">4</text>
+            </g>
+          </svg>`,
+        loadController: () =>
+          import('../games/sudoku/SudokuController.js').then((m) => m.SudokuController),
+      },
+      {
+        id: 'game2048',
+        category: 'puzzle',
+        isSoloPuzzle: true,
+        name: '2048',
+        enName: '2048 PUZZLE',
+        description: '同じ数字のタイルをスライドして合体させ、目標タイルを目指す中毒性の高い数字パズル。',
+        supportsPvp: false,
+        wideLayout: false,
+        difficultyLabels: {
+          beginner: '初級 (512)',
+          intermediate: '中級 (2048)',
+          advanced: '上級 (4096)',
+        },
+        options: [],
+        rules: [
+          '上下左右（矢印キー / WASD / スワイプ / 画面ボタン）に全タイルをスライドさせます。',
+          '同じ数字のタイル同士がぶつかると合体して2倍の数字になります。',
+          '難易度に応じた目標タイル（512 / 2048 / 4096）を完成するとクリアです。',
+        ],
+        thumbnailSvg: `
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="10" y="10" width="100" height="100" rx="12" fill="#8c7660"/>
+            <rect x="18" y="18" width="38" height="38" rx="6" fill="#ede0c8"/>
+            <rect x="64" y="18" width="38" height="38" rx="6" fill="#e8a768"/>
+            <rect x="18" y="64" width="38" height="38" rx="6" fill="#d66242"/>
+            <rect x="64" y="64" width="38" height="38" rx="6" fill="#9c2b23"/>
+            <g font-family="sans-serif" font-weight="800" text-anchor="middle">
+              <text x="37" y="44" font-size="20" fill="#463a2f">4</text>
+              <text x="83" y="44" font-size="20" fill="#fff">16</text>
+              <text x="37" y="90" font-size="18" fill="#fff">128</text>
+              <text x="83" y="89" font-size="14" fill="#fff6d6">2048</text>
+            </g>
+          </svg>`,
+        loadController: () =>
+          import('../games/game2048/Game2048Controller.js').then((m) => m.Game2048Controller),
+      },
+      {
+        id: 'sliding',
+        category: 'puzzle',
+        isSoloPuzzle: true,
+        name: '15パズル',
+        enName: 'SLIDING PUZZLE',
+        description: '木製タイルをスライドして1から順番に並べる王道スライドパズル。3×3・4×4・5×5の3段階。',
+        supportsPvp: false,
+        wideLayout: false,
+        difficultyLabels: {
+          beginner: '初級 (3×3)',
+          intermediate: '中級 (4×4)',
+          advanced: '上級 (5×5)',
+        },
+        options: [],
+        rules: [
+          '空きマスと同じ行または列にあるタイルをクリックすると、まとめてスライド移動できます。',
+          '左上から右方向へ 1, 2, 3… と順番に並べ、右下を空きマスにすると完成です。',
+          '必ず解ける配置のみが生成されます。矢印キー操作にも対応しています。',
+        ],
+        thumbnailSvg: `
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="10" y="10" width="100" height="100" rx="12" fill="#4f331d" stroke="#2d1c0f" stroke-width="3"/>
+            <rect x="18" y="18" width="25" height="25" rx="4" fill="#ecd2a0"/><rect x="47.5" y="18" width="25" height="25" rx="4" fill="#ecd2a0"/><rect x="77" y="18" width="25" height="25" rx="4" fill="#ecd2a0"/>
+            <rect x="18" y="47.5" width="25" height="25" rx="4" fill="#ecd2a0"/><rect x="47.5" y="47.5" width="25" height="25" rx="4" fill="#c3d9b5"/><rect x="77" y="47.5" width="25" height="25" rx="4" fill="#ecd2a0"/>
+            <rect x="18" y="77" width="25" height="25" rx="4" fill="#ecd2a0"/><rect x="47.5" y="77" width="25" height="25" rx="4" fill="#ecd2a0"/>
+            <rect x="77" y="77" width="25" height="25" rx="4" fill="#2b1a0e"/>
+            <g font-family="Shippori Mincho, serif" font-weight="800" font-size="14" fill="#2a1d10" text-anchor="middle">
+              <text x="30.5" y="36">1</text><text x="60" y="36">2</text><text x="89.5" y="36">3</text>
+              <text x="30.5" y="65.5">4</text><text x="60" y="65.5">5</text><text x="89.5" y="65.5">6</text>
+              <text x="30.5" y="95">7</text><text x="60" y="95">8</text>
+            </g>
+          </svg>`,
+        loadController: () =>
+          import('../games/sliding/SlidingController.js').then((m) => m.SlidingController),
+      },
+      {
+        id: 'minesweeper',
+        category: 'puzzle',
+        isSoloPuzzle: true,
+        name: 'マインスイーパー',
+        enName: 'MINESWEEPER',
+        description: '数字を手がかりに地雷の位置を推理する定番論理パズル。初手安全保証・旗モード・コード開示対応。',
+        supportsPvp: false,
+        wideLayout: false,
+        difficultyLabels: {
+          beginner: '初級 (9×9)',
+          intermediate: '中級 (12×12)',
+          advanced: '上級 (16×12)',
+        },
+        options: [],
+        rules: [
+          'マスを開くと周囲8マスに隠れた地雷の数が表示されます。最初の1手は必ず安全です。',
+          '地雷だと思うマスには右クリック（または旗モード切替）で旗（⚑）を立てられます。',
+          '開いた数字マスの周囲に同数の旗が立っている場合、数字をクリックすると残りの周囲を一括開示できます。',
+        ],
+        thumbnailSvg: `
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="12" y="12" width="96" height="96" rx="10" fill="#3a3f47"/>
+            <rect x="20" y="20" width="24" height="24" rx="4" fill="#e9e4d8"/><rect x="48" y="20" width="24" height="24" rx="4" fill="#e9e4d8"/><rect x="76" y="20" width="24" height="24" rx="4" fill="#b4bcc6"/>
+            <rect x="20" y="48" width="24" height="24" rx="4" fill="#e9e4d8"/><rect x="48" y="48" width="24" height="24" rx="4" fill="#b4bcc6"/><rect x="76" y="48" width="24" height="24" rx="4" fill="#b4bcc6"/>
+            <rect x="20" y="76" width="24" height="24" rx="4" fill="#b4bcc6"/><rect x="48" y="76" width="24" height="24" rx="4" fill="#e9e4d8"/><rect x="76" y="76" width="24" height="24" rx="4" fill="#c4362c"/>
+            <text x="32" y="38" text-anchor="middle" font-size="16" font-weight="800" fill="#1d57a3">1</text>
+            <text x="60" y="38" text-anchor="middle" font-size="16" font-weight="800" fill="#1f6e3f">2</text>
+            <text x="60" y="66" text-anchor="middle" font-size="16" font-weight="800" fill="#b8251e">⚑</text>
+            <circle cx="88" cy="88" r="7" fill="#1a1715"/>
+          </svg>`,
+        loadController: () =>
+          import('../games/minesweeper/MinesweeperController.js').then((m) => m.MinesweeperController),
+      },
+      {
+        id: 'lightsout',
+        category: 'puzzle',
+        isSoloPuzzle: true,
+        name: 'ライツアウト',
+        enName: 'LIGHTS OUT',
+        description: '押したマスと上下左右の明かりが反転する頭脳パズル。すべてのライトを消灯すればクリア。',
+        supportsPvp: false,
+        wideLayout: false,
+        difficultyLabels: {
+          beginner: '初級 (4×4)',
+          intermediate: '中級 (5×5)',
+          advanced: '上級 (6×6)',
+        },
+        options: [],
+        rules: [
+          'いずれかのマスを押すと、そのマス自身と上下左右に隣接する最大5マスの点灯／消灯が反転します。',
+          'すべてのマスを消灯状態にするとクリアです。',
+          '必ず解ける盤面のみ出題されます。迷ったときはヒント機能で次の1手を確認できます。',
+        ],
+        thumbnailSvg: `
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="12" y="12" width="96" height="96" rx="12" fill="#211c16" stroke="#473c2e" stroke-width="3"/>
+            <rect x="20" y="20" width="24" height="24" rx="5" fill="#362f28"/><rect x="48" y="20" width="24" height="24" rx="5" fill="#f0c24b"/><rect x="76" y="20" width="24" height="24" rx="5" fill="#362f28"/>
+            <rect x="20" y="48" width="24" height="24" rx="5" fill="#f0c24b"/><rect x="48" y="48" width="24" height="24" rx="5" fill="#fff0ad"/><rect x="76" y="48" width="24" height="24" rx="5" fill="#f0c24b"/>
+            <rect x="20" y="76" width="24" height="24" rx="5" fill="#362f28"/><rect x="48" y="76" width="24" height="24" rx="5" fill="#f0c24b"/><rect x="76" y="76" width="24" height="24" rx="5" fill="#362f28"/>
+          </svg>`,
+        loadController: () =>
+          import('../games/lightsout/LightsOutController.js').then((m) => m.LightsOutController),
+      },
     ];
 
     for (const def of definitions) {

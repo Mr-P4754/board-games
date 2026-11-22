@@ -1,5 +1,5 @@
 .gomoku-board-wrap {
-  width: min(600px, 100%);
+  width: min(600px, 100%, calc(100dvh - 180px));
   padding: 14px;
   border-radius: 12px;
   background: linear-gradient(155deg, #e0b46b 0%, #cf9d4d 55%, #be8c3e 100%);

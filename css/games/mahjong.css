@@ -473,34 +473,154 @@
   font-weight: 700;
 }
 
-@media (max-width: 860px) {
+/* Tablet (700px - 1024px) */
+@media (max-width: 1024px) {
+  .mj-table {
+    padding: 10px;
+    border-width: 4px;
+  }
+
+  .mj-middle-row {
+    grid-template-columns: 112px minmax(0, 1fr) 112px;
+    min-height: 250px;
+  }
+
+  .mj-river {
+    grid-template-columns: repeat(6, 22px);
+    min-width: 144px;
+    min-height: 66px;
+  }
+
+  .mj-river--side {
+    grid-template-columns: repeat(4, 21px);
+    min-width: 94px;
+    min-height: 88px;
+  }
+
+  .mj-tile--xs {
+    width: 21px;
+    height: 30px;
+  }
+
+  .mj-tile {
+    width: clamp(32px, 5.2vw, 42px);
+    height: clamp(46px, 7.2vw, 58px);
+  }
+}
+
+/* Mobile (<= 700px) */
+@media (max-width: 700px) {
+  .mj-table {
+    padding: 8px 6px;
+    border-width: 3px;
+    border-radius: 12px;
+    gap: 6px;
+  }
+
   .mj-middle-row {
     grid-template-columns: 1fr;
     min-height: auto;
+    gap: 6px;
   }
 
   .mj-side-seat {
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
+    padding: 0 2px;
+  }
+
+  .mj-seat-badge {
+    font-size: 0.72rem;
+    padding: 2px 7px;
   }
 
   .mj-arena {
-    grid-template-columns: auto;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
-      'top'
-      'left'
-      'center'
-      'right'
-      'bottom';
+      'top top'
+      'center center'
+      'left right'
+      'bottom bottom';
+    gap: 6px;
+  }
+
+  .mj-river--top,
+  .mj-river--bottom {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: repeat(auto-fill, 21px);
+    min-height: 40px;
+    justify-content: center;
+  }
+
+  .mj-river--left,
+  .mj-river--right {
+    justify-self: stretch;
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: repeat(auto-fill, 19px);
+    min-height: 40px;
+  }
+
+  .mj-center-box {
+    width: 100%;
+    min-width: 0;
+    padding: 7px 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .mj-round-title {
+    font-size: 0.92rem;
+  }
+
+  .mj-tile--xs {
+    width: 19px;
+    height: 27px;
+  }
+
+  .mj-tile--back-sm {
+    width: 13px;
+    height: 19px;
+  }
+
+  .mj-hand-tiles {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+    gap: 3px;
+    padding: 6px 2px 2px;
   }
 
   .mj-tile {
-    width: 34px;
-    height: 48px;
+    width: clamp(32px, 11.5vw, 40px);
+    height: clamp(46px, 15.8vw, 56px);
+  }
+
+  .mj-tile-drawn-gap {
+    margin-left: 6px;
+  }
+
+  .mj-act-btn {
+    padding: 8px 14px;
+    font-size: 0.84rem;
+    min-height: 38px;
+  }
+
+  .mj-yaku-list {
+    grid-template-columns: 1fr;
   }
 
   .mj-delta-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mj-round-card {
+    padding: 16px 14px;
   }
 }

@@ -646,3 +646,104 @@
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Responsive Component Refinements (Tablet / Mobile / Touch) */
+@media (max-width: 680px) {
+  .lobby-filter-tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .filter-tab {
+    padding: 8px 6px;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .game-card-visual {
+    height: 112px;
+  }
+
+  .game-card-visual svg {
+    width: 88px;
+    height: 88px;
+  }
+
+  .game-card-body {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .player-chip {
+    padding: 8px 10px;
+  }
+
+  .player-chip-value {
+    font-size: 1.08rem;
+  }
+
+  .turn-banner {
+    padding: 9px 11px;
+  }
+
+  .turn-banner-main {
+    font-size: 0.88rem;
+  }
+
+  .modal-backdrop {
+    padding: 10px;
+    align-items: end;
+  }
+
+  .modal-dialog {
+    padding: 18px 16px;
+    border-radius: var(--radius-lg) var(--radius-lg) 12px 12px;
+    max-height: 88dvh;
+  }
+
+  .segmented {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  }
+
+  .segmented-btn {
+    padding: 9px 8px;
+    font-size: 0.8rem;
+  }
+
+  .modal-footer {
+    gap: 8px;
+  }
+
+  .modal-footer .btn {
+    flex: 1 1 auto;
+  }
+
+  .toast-container {
+    width: calc(100% - 24px);
+    align-items: center;
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+
+  .toast {
+    text-align: center;
+    font-size: 0.82rem;
+    padding: 9px 14px;
+  }
+}
+
+@media (pointer: coarse) {
+  .btn {
+    min-height: 38px;
+  }
+
+  .btn-sm {
+    min-height: 34px;
+  }
+
+  .segmented-btn {
+    min-height: 38px;
+  }
+}
+

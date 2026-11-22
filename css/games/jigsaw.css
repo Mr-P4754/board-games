@@ -146,12 +146,67 @@
   font-size: 0.86rem;
 }
 
+.jigsaw-touch-ghost {
+  position: fixed;
+  z-index: 300;
+  width: 84px;
+  height: 84px;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1.08);
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.42));
+}
+
+.jigsaw-touch-ghost svg {
+  width: 100%;
+  height: 100%;
+}
+
 @media (max-width: 900px) {
   .jigsaw-stage {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .jigsaw-board-frame {
+    width: min(520px, 100%, 54dvh);
+    margin: 0 auto;
+    padding: 8px;
   }
 
   .jigsaw-tray-panel {
-    max-height: 290px;
+    max-height: none;
+    padding: 10px 12px;
+  }
+
+  .jigsaw-tray-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    max-height: 220px;
+  }
+}
+
+@media (max-width: 560px) {
+  .jigsaw-toolbar {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .jigsaw-metrics {
+    gap: 10px;
+    font-size: 0.78rem;
+  }
+
+  .jigsaw-tray-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding: 4px 2px 8px;
+  }
+
+  .jigsaw-tray-piece {
+    flex: 0 0 74px;
+    width: 74px;
+    height: 74px;
   }
 }

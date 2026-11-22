@@ -80,3 +80,16 @@
 .ms-n-6 { color: #1c6b75; }
 .ms-n-7 { color: #2b241d; }
 .ms-n-8 { color: #635c54; }
+
+@media (max-width: 560px) {
+  .ms-frame {
+    padding: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ms-cell {
+    min-width: 28px;
+    min-height: 28px;
+    font-size: 0.84rem;
+  }
+}

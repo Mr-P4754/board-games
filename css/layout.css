@@ -3,6 +3,7 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom);
   background-image:
     radial-gradient(circle at 12% 0%, rgba(166, 120, 46, 0.07), transparent 42%),
     radial-gradient(circle at 88% 100%, rgba(34, 84, 61, 0.06), transparent 46%);
@@ -13,21 +14,22 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  height: var(--header-height);
-  background: color-mix(in srgb, var(--bg-surface) 90%, transparent);
+  min-height: var(--header-height);
+  padding-top: env(safe-area-inset-top);
+  background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .header-inner {
   max-width: 1280px;
-  height: 100%;
+  height: var(--header-height);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
 }
 
 .brand-link {
@@ -35,6 +37,7 @@
   align-items: center;
   gap: 12px;
   transition: opacity 0.16s ease;
+  flex-shrink: 0;
 }
 
 .brand-link:hover {
@@ -76,6 +79,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 /* Main Content */
@@ -84,12 +88,12 @@
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 28px 20px 44px;
+  padding: 26px max(20px, env(safe-area-inset-right)) 44px max(20px, env(safe-area-inset-left));
 }
 
 .app-main--wide {
   max-width: 1400px;
-  padding: 16px 16px 28px;
+  padding: 16px max(16px, env(safe-area-inset-right)) 28px max(16px, env(safe-area-inset-left));
 }
 
 /* Lobby */
@@ -99,14 +103,14 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 28px;
-  padding-bottom: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .lobby-hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-size: clamp(1.45rem, 3vw, 2.3rem);
   font-weight: 800;
   letter-spacing: 0.04em;
   line-height: 1.25;
@@ -115,8 +119,8 @@
 .lobby-hero p {
   margin-top: 6px;
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  max-width: 620px;
+  font-size: clamp(0.84rem, 1.6vw, 0.94rem);
+  max-width: 660px;
 }
 
 .lobby-grid {
@@ -143,25 +147,26 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 14px;
 }
 
 .game-topbar-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .game-title-heading {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
   font-weight: 800;
   letter-spacing: 0.03em;
 }
 
 .game-mode-tag {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 999px;
@@ -174,15 +179,16 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .board-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   min-width: 0;
+  width: 100%;
 }
 
 .board-mount {
@@ -191,12 +197,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-width: 0;
 }
 
 .side-panel {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  min-width: 0;
 }
 
 .panel-card {
@@ -208,7 +216,7 @@
 }
 
 .panel-card-title {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--text-muted);
@@ -216,40 +224,148 @@
   margin-bottom: 10px;
 }
 
+/* Tablet Layout (681px - 1040px) */
 @media (max-width: 1040px) {
   .lobby-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 
   .game-stage {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .side-panel {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 680px) {
-  .header-inner {
-    padding: 0 14px;
-  }
-
-  .app-main {
-    padding: 18px 12px 32px;
-  }
-
-  .lobby-grid {
-    grid-template-columns: 1fr;
     gap: 14px;
   }
 
+  /* Lift status panel above the board on tablet & mobile for immediate visibility */
   .side-panel {
-    grid-template-columns: 1fr;
+    display: contents;
+  }
+
+  .panel-card--status {
+    order: -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .panel-card--status .panel-card-title {
+    display: none;
+  }
+
+  .panel-card--status .turn-banner {
+    margin-bottom: 0;
+  }
+
+  .board-column {
+    order: 0;
+  }
+
+  .panel-card--controls {
+    order: 1;
+    padding: 12px 14px;
+  }
+
+  .panel-card--history {
+    order: 2;
+    padding: 12px 14px;
+  }
+}
+
+/* Mobile Layout (<= 680px) */
+@media (max-width: 680px) {
+  :root {
+    --header-height: 52px;
+  }
+
+  .header-inner {
+    padding: 0 max(12px, env(safe-area-inset-right)) 0 max(12px, env(safe-area-inset-left));
+    gap: 8px;
+  }
+
+  .brand-emblem {
+    width: 30px;
+    height: 30px;
+    font-size: 0.95rem;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
   }
 
   .brand-sub {
     display: none;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
+  .header-actions .btn-sm {
+    padding: 6px 8px;
+    font-size: 0.74rem;
+  }
+
+  .app-main {
+    padding: 14px max(10px, env(safe-area-inset-right)) 28px max(10px, env(safe-area-inset-left));
+  }
+
+  .app-main--wide {
+    padding: 10px max(8px, env(safe-area-inset-right)) 24px max(8px, env(safe-area-inset-left));
+  }
+
+  .lobby-hero {
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    gap: 12px;
+  }
+
+  .lobby-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .game-topbar {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .game-topbar-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .game-topbar-actions .btn-sm {
+    padding: 6px 9px;
+    font-size: 0.76rem;
+  }
+
+  .panel-card--status {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .panel-card--controls,
+  .panel-card--history {
+    padding: 12px;
+  }
+
+  .panel-card--history .history-list {
+    max-height: 150px;
+  }
+}
+
+/* Landscape Mobile / Short Viewport Optimization */
+@media (max-height: 560px) and (orientation: landscape) {
+  .app-main,
+  .app-main--wide {
+    padding-top: 8px;
+    padding-bottom: 12px;
+  }
+
+  .game-topbar {
+    margin-bottom: 8px;
   }
 }

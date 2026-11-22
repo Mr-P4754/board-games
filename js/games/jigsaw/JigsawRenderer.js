@@ -212,16 +212,76 @@ export class JigsawRenderer extends BaseRenderer {
       reader.readAsDataURL(file);
     });
 
-    // Tray piece click + dragstart
+    // Tray piece click + desktop HTML5 drag + mobile/tablet touch drag
     this.rootEl.querySelectorAll('[data-tray-piece]').forEach((btn) => {
       const id = Number(btn.dataset.trayPiece);
+      let touchDragged = false;
+
       btn.addEventListener('click', () => {
+        if (touchDragged) {
+          touchDragged = false;
+          return;
+        }
         this.selectedPieceId = this.selectedPieceId === id ? null : id;
         this.render(this.lastViewModel);
       });
+
       btn.addEventListener('dragstart', (e) => {
         this.selectedPieceId = id;
         e.dataTransfer?.setData('text/plain', String(id));
+      });
+
+      btn.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'mouse') return;
+        const startX = e.clientX;
+        const startY = e.clientY;
+        let ghost = null;
+        let hoveredSlot = null;
+
+        const onMove = (ev) => {
+          const dist = Math.hypot(ev.clientX - startX, ev.clientY - startY);
+          if (!ghost && dist > 10) {
+            touchDragged = true;
+            ghost = document.createElement('div');
+            ghost.className = 'jigsaw-touch-ghost';
+            ghost.innerHTML = btn.innerHTML;
+            document.body.appendChild(ghost);
+          }
+          if (ghost) {
+            ev.preventDefault();
+            ghost.style.left = `${ev.clientX}px`;
+            ghost.style.top = `${ev.clientY}px`;
+            const target = document.elementFromPoint(ev.clientX, ev.clientY)?.closest?.('[data-slot]');
+            if (hoveredSlot && hoveredSlot !== target) hoveredSlot.classList.remove('is-drag-over');
+            hoveredSlot = target || null;
+            if (hoveredSlot) hoveredSlot.classList.add('is-drag-over');
+          }
+        };
+
+        const cleanup = () => {
+          window.removeEventListener('pointermove', onMove);
+          window.removeEventListener('pointerup', onUp);
+          window.removeEventListener('pointercancel', onCancel);
+          if (hoveredSlot) hoveredSlot.classList.remove('is-drag-over');
+          if (ghost) ghost.remove();
+        };
+
+        const onUp = (ev) => {
+          const dropSlot = ghost
+            ? document.elementFromPoint(ev.clientX, ev.clientY)?.closest?.('[data-slot]')
+            : null;
+          cleanup();
+          if (dropSlot) {
+            this.selectedPieceId = null;
+            this.onAction({ type: 'place', pieceId: id, slotIndex: Number(dropSlot.dataset.slot) });
+          }
+        };
+
+        const onCancel = () => cleanup();
+
+        window.addEventListener('pointermove', onMove, { passive: false });
+        window.addEventListener('pointerup', onUp);
+        window.addEventListener('pointercancel', onCancel);
       });
     });
 

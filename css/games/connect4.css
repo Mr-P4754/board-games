@@ -1,5 +1,5 @@
 .c4-shell {
-  width: min(560px, 100%);
+  width: min(560px, 100%, calc(100dvh - 200px));
   display: flex;
   flex-direction: column;
   gap: 8px;

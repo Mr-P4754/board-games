@@ -60,7 +60,7 @@ export class GameLayoutView {
           !isWide
             ? `
           <aside class="side-panel">
-            <div class="panel-card">
+            <div class="panel-card panel-card--status">
               <div class="panel-card-title">対局状況</div>
               <div class="turn-banner">
                 <div class="turn-banner-main">
@@ -74,7 +74,7 @@ export class GameLayoutView {
               <div class="score-row" id="score-row"></div>
             </div>
 
-            <div class="panel-card">
+            <div class="panel-card panel-card--controls">
               <div class="panel-card-title">操作</div>
               <div class="control-grid">
                 <button type="button" class="btn btn-secondary btn-sm" id="btn-undo">待った</button>
@@ -83,7 +83,7 @@ export class GameLayoutView {
               <div id="extra-controls" style="margin-top:8px;"></div>
             </div>
 
-            <div class="panel-card">
+            <div class="panel-card panel-card--history">
               <div class="panel-card-title">着手履歴</div>
               <div class="history-list" id="history-list">
                 <div class="history-empty">まだ着手はありません</div>

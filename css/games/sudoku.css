@@ -127,3 +127,20 @@
   color: var(--text-muted);
   font-weight: 500;
 }
+
+@media (max-width: 520px) {
+  .sudoku-shell {
+    gap: 10px;
+  }
+
+  .sudoku-numpad {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+
+  .sudoku-num-btn {
+    padding: 9px 4px;
+    min-height: 46px;
+    font-size: 1.05rem;
+  }
+}

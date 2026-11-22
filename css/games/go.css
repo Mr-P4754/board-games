@@ -1,5 +1,5 @@
 .go-shell {
-  width: min(600px, 100%);
+  width: min(600px, 100%, calc(100dvh - 180px));
   display: flex;
   flex-direction: column;
   gap: 10px;

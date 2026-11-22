@@ -1,5 +1,5 @@
 .shogi-shell {
-  width: min(560px, 100%);
+  width: min(560px, 100%, calc(100dvh - 250px));
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -210,6 +210,22 @@
 
 @media (max-width: 520px) {
   .shogi-frame {
-    padding: 10px 12px 10px 8px;
+    padding: 8px 10px 8px 6px;
+  }
+
+  .shogi-komadai {
+    min-height: 40px;
+    padding: 4px 8px;
+    gap: 4px;
+  }
+
+  .shogi-hand-btn {
+    width: 34px;
+    height: 36px;
+  }
+
+  .shogi-coords-top,
+  .shogi-coords-right {
+    font-size: 0.64rem;
   }
 }

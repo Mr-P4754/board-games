@@ -1,5 +1,5 @@
 .othello-frame {
-  width: min(560px, 100%);
+  width: min(560px, 100%, calc(100dvh - 180px));
   padding: 16px;
   border-radius: 14px;
   background: linear-gradient(145deg, #4b3220, #2e1d12);

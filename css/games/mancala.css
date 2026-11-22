@@ -121,22 +121,62 @@
 
 @media (max-width: 580px) {
   .mancala-board {
-    grid-template-columns: 56px minmax(0, 1fr) 56px;
-    gap: 7px;
+    grid-template-columns: 54px minmax(0, 1fr) 54px;
+    gap: 6px;
     padding: 12px 8px;
     border-radius: 18px;
   }
 
   .mancala-store {
-    min-height: 138px;
+    min-height: 132px;
     padding: 8px 4px;
   }
 
   .mancala-store-count {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .mancala-row {
     gap: 5px;
+  }
+
+  .mancala-pit {
+    padding: 4px;
+  }
+
+  .mancala-pit-count {
+    min-width: 19px;
+    height: 17px;
+    font-size: 0.66rem;
+    bottom: -8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mancala-board {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    gap: 4px;
+    padding: 10px 6px;
+  }
+
+  .mancala-store {
+    min-height: 112px;
+    border-radius: 22px;
+  }
+
+  .mancala-store-title {
+    font-size: 0.62rem;
+  }
+
+  .mancala-store-count {
+    font-size: 0.96rem;
+  }
+
+  .mancala-row {
+    gap: 3px;
+  }
+
+  .mancala-side-label {
+    font-size: 0.72rem;
   }
 }

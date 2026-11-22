@@ -147,6 +147,18 @@
   background: radial-gradient(circle at 30% 25%, #1d644b, #0e382a);
 }
 
+.game-card-visual--checkers {
+  background: radial-gradient(circle at 30% 25%, #845132, #4d2c19);
+}
+
+.game-card-visual--connect4 {
+  background: radial-gradient(circle at 30% 25%, #2b5a8a, #15314f);
+}
+
+.game-card-visual--mancala {
+  background: radial-gradient(circle at 30% 25%, #99643a, #5c371c);
+}
+
 .game-card-body {
   flex: 1;
   display: flex;

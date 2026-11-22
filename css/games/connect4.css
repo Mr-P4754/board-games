@@ -1,0 +1,109 @@
+.c4-shell {
+  width: min(560px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.c4-col-buttons {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding: 0 14px;
+}
+
+.c4-drop-btn {
+  height: 30px;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: background-color 0.14s ease, transform 0.12s ease, color 0.14s ease;
+}
+
+.c4-drop-btn:hover:not(:disabled) {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #fff;
+  transform: translateY(2px);
+}
+
+.c4-frame {
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(160deg, #254b73, #173452);
+  border: 3px solid #10243a;
+  box-shadow: var(--shadow-board), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.c4-board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  aspect-ratio: 7 / 6;
+}
+
+.c4-slot {
+  position: relative;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 60%, #102338, #193858);
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.48), 0 1px 0 rgba(255, 255, 255, 0.14);
+  display: grid;
+  place-items: center;
+}
+
+.c4-slot--clickable {
+  cursor: pointer;
+}
+
+.c4-slot--clickable:hover {
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.48), 0 0 0 2px rgba(245, 206, 102, 0.65);
+}
+
+.c4-disc {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  animation: c4Drop 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes c4Drop {
+  0% { transform: translateY(-38%); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.c4-disc--1 {
+  background: radial-gradient(circle at 32% 28%, #eb6054, #c22e24 68%, #881c15);
+  box-shadow: inset 0 2px 3px rgba(255, 220, 215, 0.45), inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.c4-disc--2 {
+  background: radial-gradient(circle at 32% 28%, #ffe580, #e3b22d 68%, #a67c15);
+  box-shadow: inset 0 2px 3px rgba(255, 252, 220, 0.65), inset 0 -2px 4px rgba(0, 0, 0, 0.22);
+}
+
+.c4-disc--last {
+  outline: 3px solid rgba(255, 255, 255, 0.85);
+  outline-offset: -5px;
+}
+
+.c4-disc--win {
+  box-shadow: 0 0 0 3px #ffffff, 0 0 14px rgba(255, 240, 150, 0.9);
+}
+
+@media (max-width: 520px) {
+  .c4-frame {
+    padding: 8px;
+  }
+
+  .c4-board,
+  .c4-col-buttons {
+    gap: 5px;
+  }
+
+  .c4-col-buttons {
+    padding: 0 8px;
+  }
+}

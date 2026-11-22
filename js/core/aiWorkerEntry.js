@@ -5,6 +5,9 @@ const AI_MODULE_MAP = {
   shogi: () => import('../games/shogi/ShogiAI.js').then((m) => new m.ShogiAI()),
   go: () => import('../games/go/GoAI.js').then((m) => new m.GoAI()),
   mahjong: () => import('../games/mahjong/MahjongAI.js').then((m) => new m.MahjongAI()),
+  checkers: () => import('../games/checkers/CheckersAI.js').then((m) => new m.CheckersAI()),
+  connect4: () => import('../games/connect4/Connect4AI.js').then((m) => new m.Connect4AI()),
+  mancala: () => import('../games/mancala/MancalaAI.js').then((m) => new m.MancalaAI()),
 };
 
 const cache = new Map();

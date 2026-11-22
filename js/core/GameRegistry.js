@@ -227,6 +227,100 @@ export class GameRegistry {
         loadController: () =>
           import('../games/mahjong/MahjongController.js').then((m) => m.MahjongController),
       },
+      {
+        id: 'checkers',
+        name: 'チェッカー',
+        enName: 'CHECKERS',
+        description: '斜めに駒を進め、相手の駒を連続ジャンプで飛び越して取る爽快な定番ボードゲーム。',
+        supportsPvp: true,
+        wideLayout: false,
+        sideLabels: { 1: '赤（先手）', 2: '白（後手）' },
+        options: [],
+        rules: [
+          '8×8盤面の濃いマスのみを使用し、赤（先手）・白（後手）が交互に斜め前へ1マス進みます。',
+          '斜め隣の相手の駒の奥が空いている場合はジャンプして取ることができ、取れる駒があるときは強制ジャンプとなります（連続ジャンプ対応）。',
+          '相手の最奥段に到達した駒は「キング」に昇格し、前後すべての斜め方向へ移動・ジャンプできます。',
+          '相手の駒をすべて取るか、相手が動けなくなると勝利です。',
+        ],
+        thumbnailSvg: `
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="8" y="8" width="104" height="104" rx="8" fill="#593722" stroke="#361f12" stroke-width="3"/>
+            <rect x="14" y="14" width="46" height="46" fill="#ecd8b8"/>
+            <rect x="60" y="60" width="46" height="46" fill="#ecd8b8"/>
+            <rect x="60" y="14" width="46" height="46" fill="#7d4f32"/>
+            <rect x="14" y="60" width="46" height="46" fill="#7d4f32"/>
+            <circle cx="37" cy="83" r="15" fill="#b82c22" stroke="#5e130e" stroke-width="2.5"/>
+            <path d="M29 88l2-9 4 4 2-6 2 6 4-4 2 9H29z" fill="#f5cc64" stroke="#6c4b11" stroke-width="1.2"/>
+            <circle cx="83" cy="37" r="15" fill="#f5eee0" stroke="#8a7c66" stroke-width="2.5"/>
+          </svg>`,
+        loadController: () =>
+          import('../games/checkers/CheckersController.js').then((m) => m.CheckersController),
+      },
+      {
+        id: 'connect4',
+        name: 'コネクトフォー',
+        enName: 'CONNECT FOUR',
+        description: '7列×6段のフレームにディスクを落とし、縦・横・斜めに4つ揃えるスピード勝負の頭脳戦。',
+        supportsPvp: true,
+        wideLayout: false,
+        sideLabels: { 1: '赤（先手）', 2: '黄（後手）' },
+        options: [],
+        rules: [
+          '7列×6段の縦型ボードに、赤（先手）・黄（後手）が交互にディスクを落とします。',
+          'ディスクは選んだ列の一番下の空きマスまで重力で落下します。',
+          '縦・横・斜めのいずれかに自分のディスクを4つ連続で並べた瞬間に勝利となります。',
+          '42マスすべてが埋まると引き分けです。',
+        ],
+        thumbnailSvg: `
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="8" y="16" width="104" height="88" rx="12" fill="#1d4066" stroke="#10253b" stroke-width="3"/>
+            <circle cx="30" cy="40" r="10" fill="#102338"/><circle cx="60" cy="40" r="10" fill="#102338"/><circle cx="90" cy="40" r="10" fill="#e5b832"/>
+            <circle cx="30" cy="64" r="10" fill="#102338"/><circle cx="60" cy="64" r="10" fill="#d1382c"/><circle cx="90" cy="64" r="10" fill="#e5b832"/>
+            <circle cx="30" cy="88" r="10" fill="#d1382c"/><circle cx="60" cy="88" r="10" fill="#e5b832"/><circle cx="90" cy="88" r="10" fill="#d1382c"/>
+          </svg>`,
+        loadController: () =>
+          import('../games/connect4/Connect4Controller.js').then((m) => m.Connect4Controller),
+      },
+      {
+        id: 'mancala',
+        name: 'マンカラ',
+        enName: 'MANCALA',
+        description: '石を反時計回りに蒔き合いストアに集める世界最古級の戦略ゲーム。ピッタリ連続手番と横取りが熱い。',
+        supportsPvp: true,
+        wideLayout: false,
+        sideLabels: { 1: '先手', 2: '後手' },
+        options: [
+          {
+            key: 'stonesPerPit',
+            label: '初期石数（1ポケット）',
+            defaultValue: 4,
+            choices: [
+              { value: 4, label: '4石（標準）' },
+              { value: 3, label: '3石（短時間）' },
+              { value: 5, label: '5石（じっくり）' },
+            ],
+          },
+        ],
+        rules: [
+          '自陣の6つのポケットから1つを選び、入っている石を反時計回りに1つずつ隣へ蒔いていきます（相手のストアは飛ばします）。',
+          '最後の1石が自分のストアにピッタリ入ると、もう一度自分の手番（連続手番）になります。',
+          '最後の1石が自陣の空ポケットに入り、向かい側の相手ポケットに石がある場合、両方の石を自分のストアへ横取りできます。',
+          'どちらかの自陣ポケットがすべて空になると終局し、相手陣に残った石は相手ストアへ回収して石数の多い方が勝利です。',
+        ],
+        thumbnailSvg: `
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="6" y="28" width="108" height="64" rx="26" fill="#7d4f2c" stroke="#422612" stroke-width="3"/>
+            <rect x="14" y="37" width="18" height="46" rx="9" fill="#3f2310"/>
+            <rect x="88" y="37" width="18" height="46" rx="9" fill="#3f2310"/>
+            <circle cx="44" cy="48" r="8" fill="#3f2310"/><circle cx="60" cy="48" r="8" fill="#3f2310"/><circle cx="76" cy="48" r="8" fill="#3f2310"/>
+            <circle cx="44" cy="72" r="8" fill="#3f2310"/><circle cx="60" cy="72" r="8" fill="#3f2310"/><circle cx="76" cy="72" r="8" fill="#3f2310"/>
+            <circle cx="42" cy="71" r="3" fill="#e0a74d"/><circle cx="46" cy="74" r="3" fill="#589e7d"/>
+            <circle cx="60" cy="72" r="3" fill="#c95c4d"/><circle cx="76" cy="48" r="3" fill="#5d8ab8"/>
+            <circle cx="97" cy="58" r="3.5" fill="#e0a74d"/><circle cx="97" cy="67" r="3.5" fill="#589e7d"/>
+          </svg>`,
+        loadController: () =>
+          import('../games/mancala/MancalaController.js').then((m) => m.MancalaController),
+      },
     ];
 
     for (const def of definitions) {

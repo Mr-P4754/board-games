@@ -1,0 +1,142 @@
+.mancala-wrap {
+  width: min(680px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mancala-side-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+}
+
+.mancala-board {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) 84px;
+  gap: 12px;
+  padding: 18px 16px;
+  border-radius: 26px;
+  background: linear-gradient(155deg, #8b5a34 0%, #6c4324 55%, #523118 100%);
+  border: 3px solid #3c2210;
+  box-shadow: var(--shadow-board), inset 0 1px 0 rgba(255, 232, 196, 0.28);
+}
+
+.mancala-store {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px;
+  border-radius: 42px;
+  background: radial-gradient(ellipse at 50% 45%, #3d2311, #4e2e18);
+  box-shadow: inset 0 5px 12px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 230, 190, 0.16);
+  color: #f6ead4;
+  min-height: 196px;
+}
+
+.mancala-store--active {
+  box-shadow: inset 0 5px 12px rgba(0, 0, 0, 0.55), 0 0 0 2.5px rgba(242, 200, 96, 0.72);
+}
+
+.mancala-store-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  opacity: 0.82;
+}
+
+.mancala-store-count {
+  font-size: 1.55rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #f7d887;
+}
+
+.mancala-pits-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.mancala-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.mancala-pit {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, #3a2110, #4e2f19);
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.56), 0 1px 0 rgba(255, 230, 190, 0.15);
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.mancala-pit--playable {
+  cursor: pointer;
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.52), 0 0 0 2px rgba(244, 204, 102, 0.55);
+}
+
+.mancala-pit--playable:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.45), 0 0 0 3px #f4cc66;
+}
+
+.mancala-pit--last {
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.48), 0 0 0 2.5px #e87a54;
+}
+
+.mancala-pit-count {
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 22px;
+  height: 19px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #221912;
+  border: 1px solid rgba(245, 224, 185, 0.3);
+  color: #fbf5e8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  display: grid;
+  place-items: center;
+}
+
+.mancala-pebbles {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: 580px) {
+  .mancala-board {
+    grid-template-columns: 56px minmax(0, 1fr) 56px;
+    gap: 7px;
+    padding: 12px 8px;
+    border-radius: 18px;
+  }
+
+  .mancala-store {
+    min-height: 138px;
+    padding: 8px 4px;
+  }
+
+  .mancala-store-count {
+    font-size: 1.15rem;
+  }
+
+  .mancala-row {
+    gap: 5px;
+  }
+}
